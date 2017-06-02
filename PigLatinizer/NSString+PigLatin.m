@@ -18,7 +18,7 @@
     
     NSMutableString *converted = [[NSMutableString alloc] init];
     
-    NSString *temp = [self substringWithRange:range];
+//    NSString *temp = [self substringWithRange:range];
     
     NSString *vowelsList = @"aeiouy";
     

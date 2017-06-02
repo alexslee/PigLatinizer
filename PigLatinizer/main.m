@@ -15,18 +15,29 @@ int main(int argc, const char * argv[]) {
         fgets(str,255,stdin);
         
         NSString *toParse = [[NSString alloc] initWithUTF8String:str];
+        toParse = [toParse lowercaseString];
         NSString *parsedForWhitespace = [toParse stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
         NSArray *words = [parsedForWhitespace componentsSeparatedByString:@" "];
-        NSMutableArray *pigLatinizedWords = [[NSMutableArray alloc] init];
+        //NSMutableArray *pigLatinizedWords = [[NSMutableArray alloc] init];
         
-        for (NSString *word in words) {
-            [pigLatinizedWords addObject:[word stringByPigLatinization]];
-        }
+        NSMutableString *finalSentence = [[NSMutableString alloc] init];
         
-        for (NSString *pigLatinWord in pigLatinizedWords) {
-            NSLog(@"%@ ",pigLatinWord);
+        for (unsigned i = 0; i < [words count]; i++) {
+            NSString *word = [words objectAtIndex:i];
+            //[pigLatinizedWords addObject:[word stringByPigLatinization]];
+            [finalSentence appendString:[word stringByPigLatinization]];
+            if (i < [words count] - 1) {
+                [finalSentence appendString:@" "];
+            }
         }
+        NSString *finalCapitalized = [finalSentence stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[finalSentence substringToIndex:1] capitalizedString]];
+        
+        NSLog(@"%@",finalCapitalized);
+        
+//        for (NSString *pigLatinWord in pigLatinizedWords) {
+//            NSLog(@"%@ ",pigLatinWord);
+//        }
     }
     return 0;
 }
