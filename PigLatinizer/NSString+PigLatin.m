@@ -16,7 +16,18 @@
     range.location = 0;
     range.length = 2;
     
+    NSMutableString *converted = [[NSMutableString alloc] init];
+    
     NSString *temp = [self substringWithRange:range];
+    
+    NSString *vowelsList = @"aeiou";
+    
+    NSCharacterSet *vowelSet = [NSCharacterSet characterSetWithCharactersInString:vowelsList];
+    
+    for (unsigned i = 0; i < self.length; i++) {
+        NSString *checkChar = [NSString stringWithFormat:@"%c", [self characterAtIndex:i]];
+        NSLog(@"Checking character: %@",checkChar);
+    }
     
     return temp;
 }
