@@ -14,6 +14,7 @@ int main(int argc, const char * argv[]) {
         char str[255];
         fgets(str,255,stdin);
         
+        //parse user input for converting to Pig Latin
         NSString *toParse = [[NSString alloc] initWithUTF8String:str];
         toParse = [toParse lowercaseString];
         NSString *parsedForWhitespace = [toParse stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -27,14 +28,17 @@ int main(int argc, const char * argv[]) {
             NSString *word = [words objectAtIndex:i];
             //[pigLatinizedWords addObject:[word stringByPigLatinization]];
             [finalSentence appendString:[word stringByPigLatinization]];
+            //space the words properly
             if (i < [words count] - 1) {
                 [finalSentence appendString:@" "];
             }
+            
         }
         NSString *finalCapitalized = [finalSentence stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[finalSentence substringToIndex:1] capitalizedString]];
         
         NSLog(@"%@",finalCapitalized);
         
+        //removed the for loop and formatted in the previous one, to save the extra O(n) time
 //        for (NSString *pigLatinWord in pigLatinizedWords) {
 //            NSLog(@"%@ ",pigLatinWord);
 //        }

@@ -10,6 +10,7 @@
 
 @interface NSString (PigLatin)
 
+//converts a given word into Pig Latin format
 - (NSString *)stringByPigLatinization;
 
 @end
