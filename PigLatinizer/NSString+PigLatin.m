@@ -39,7 +39,7 @@
         NSString *checkChar = [NSString stringWithFormat:@"%c", [copy characterAtIndex:i]];
         //NSLog(@"Checking character: %@",checkChar);
         NSRange foundVowel = [checkChar rangeOfCharacterFromSet:vowelSet];
-        
+
         //once the first vowel is found, record the index and break out of the search loop
         if (foundVowel.location != NSNotFound) {
             foundHere = [NSNumber numberWithUnsignedInteger:i];
@@ -47,6 +47,16 @@
             break;
         }
     }
+    
+    if ([foundHere isEqualToNumber:@0]) {
+        //if it's a vowel, add the trailing 'way' 
+        //NSLog(@"found ya, vowel");
+        converted = copy;
+        [converted appendString:@"way"];
+        [converted appendString:punctuation];
+        return converted;
+        
+    } else {
     
     //start with this string
     [converted appendString: [copy substringFromIndex:[foundHere unsignedIntegerValue]]];
@@ -59,6 +69,7 @@
     [converted appendString:punctuation];
     
     return converted;
+    }
 }
 
 @end
